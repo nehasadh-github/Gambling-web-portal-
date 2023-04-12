@@ -1,0 +1,59 @@
+<html class="betting">
+  <h4 style="background-color: black; color: #f1f1f1; font-weight: bold"> Place your bet on dice number (1 to 6) </h4>
+  <% if session[:message] %>
+    <h3> <%= session[:message] %> </h3>
+    <% session[:message] = nil %>
+  <% end %>
+
+
+  <style>
+    .win {float: left;}
+    .loss {float: left;}
+    .profit {float: right;}
+  </style>
+
+  <form action="/bettingform" method="post">
+    <div style="text-align:center;">
+      <div class="bettingSec" style="float: left; width: 50%; height: 20%;"">
+        <br>
+        bet money <input type='text' name="money"> </input><br><br>
+        on <span style="margin-left:3em;" ></span><input type='text' name="number"> </input><br><br>
+         <span>&nbsp;&emsp;</span><input type=submit value="Bet">
+
+      </div>
+
+      <div class="sessionData" style="float: right; width: 47%; height: 20%; margin-right: 10px">
+        Total win<br>
+        <input type='text' name='win' value=<%= @winSessvalue %> disabled></input><br>
+        Total loss<br>
+        <input style= "background-color: white; background-blend-mode: darken" type='text' name='loss' value=<%= @lossSessvalue %> disabled ></input><br>
+        Total profit<br>
+        <input style= "background-color: white; background-blend-mode: darken" type='text' name='profit' value=<%= @profitSessvalue %> disabled ></input><br>
+      </div>
+      <br><br><br>
+    </div>
+   <p style= "color: black; font-weight: bold; font-size:20px"> account </p>
+    <div class"accountHistory">
+      <table>
+        <tr>
+        <div class ="lowertable">
+        <td width=50%>
+           Total Win <br>
+           <input type='text' name='totalWins' value=<%= @totalwin %> disabled></input><br>
+        </td>
+        <td width=50%>
+          Total Loss <br>
+          <input type='text' name='totalLoss' value=<%= @totalloss %> disabled></input><br>
+        </td>
+        <td width=50%>
+          Total Profit <br>
+          <input style= "background-color: white; background-blend-mode: darken" type='text' name='totalProfit' value=<%= @totalprofit %> disabled></input><br>
+        </td>
+        </tr>
+      </table>
+      <br><br>
+     <input type=submit value="LogOut" formaction='/logout' style="float:inline-end">
+    </div>
+  </form><br>
+
+</html>

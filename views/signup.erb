@@ -1,0 +1,29 @@
+<html class="signup">
+<% if session[:message] %>
+  <h3> <%= session[:message] %> </h3>
+  <% session[:message] = nil %>
+<% end %>
+<form action="/signup" method='post'>
+  <div style="text-align:center; padding-top: 30px;">
+    User<span style="margin-left:2em"></span> <input type='text' name='username' required></input><br><br>
+    Password <input type='password' id="password" name='password' required onkeyup ='check();' ></input><br><br>
+    Confirm Password <input type='password' id="confirm_password" name='password' required onkeyup ='check();' ></input>
+    <span id='message'></span><br><br>
+    <input type="submit" value="Sign Up" id="submit" disabled />
+  </div>
+</form>
+<script type="text/javascript">
+  var check = function() {
+    if (document.getElementById('password').value ==
+      document.getElementById('confirm_password').value  ) {
+      document.getElementById('message').style.color = 'green';
+      document.getElementById('message').innerHTML = 'matching';
+      document.getElementById('submit').disabled = false;
+    } else {
+      document.getElementById('message').style.color = 'red';
+      document.getElementById('message').innerHTML = 'not matching';
+      document.getElementById('submit').disabled = true;
+    }
+  }
+</script>
+</html>
